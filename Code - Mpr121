@@ -1,0 +1,27 @@
+#include <Wire.h>
+#include "Adafruit_MPR121.h"
+
+Adafruit_MPR121 cap = Adafruit_MPR121();
+
+#define SPEAKER_PIN 9
+int tones[] = {262, 294, 330, 349, 392, 440, 494, 523}; // C4 to C5
+
+void setup() {
+  Serial.begin(9600);
+  if (!cap.begin(0x5A)) {
+    Serial.println("MPR121 not found. Check wiring!");
+    while (1);
+  }
+  pinMode(SPEAKER_PIN, OUTPUT);
+}
+
+void loop() {
+  uint16_t touched = cap.touched();
+  for (uint8_t i = 0; i < 8; i++) {
+    if (touched & (1 << i)) {
+      tone(SPEAKER_PIN, tones[i]);
+      delay(150);
+      noTone(SPEAKER_PIN);
+    }
+  }
+}

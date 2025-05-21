@@ -1,0 +1,18 @@
+🖼️ Full Wiring Overview:
+sql
+Copy
+Edit
+[MPR121 Module]        [Arduino Uno]
+----------------        --------------
+VCC  ---------------->  3.3V
+GND  ---------------->  GND
+SDA  ---------------->  A4
+SCL  ---------------->  A5
+ADD  ---------------->  GND  (for default I2C address)
+IRQ  ----[optional]
+
+T0–T11  → Connect foil, wire, or conductive material (as touch inputs)
+
+[Speaker/Buzzer]
++     ----------------> D9
+-     ----------------> GND
